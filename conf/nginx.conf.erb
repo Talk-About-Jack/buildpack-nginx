@@ -31,6 +31,7 @@ http {
   }
 
   server {
+    listen <%= ENV["PORT"] %>;
     server_name _;
     return 301 https://jack.chat$request_uri;
   }

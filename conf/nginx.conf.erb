@@ -21,7 +21,7 @@ http {
 
     location / {
       default_type "text/html";
-      try_files /$uri /$uri.html /$uri/index.html /index.html @redirect;
+      try_files /$uri /$uri.html /$uri/index.html @redirect;
     }
 
     location @redirect {

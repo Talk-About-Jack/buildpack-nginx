@@ -10,6 +10,7 @@ events {
 http {
   types_hash_max_size 2048;
   include mime.types;
+
   server {
     listen <%= ENV["PORT"] %>;
     server_name jack.chat;
@@ -30,7 +31,7 @@ http {
   }
 
   server {
-    server_name talk-about-jack.com www.talk-about-jack.com;
-    return 301 $scheme://jack.chat$request_uri;
+    server_name _;
+    return 301 https://jack.chat$request_uri;
   }
 }

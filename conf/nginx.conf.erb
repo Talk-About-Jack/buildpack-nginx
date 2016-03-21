@@ -13,6 +13,12 @@ http {
 
   server {
     listen <%= ENV["PORT"] %>;
+    server_name talk-about-jack.com www.talk-about-jack.com talkaboutjack.chat *.talkaboutjack.chat;
+    return 301 https://jack.chat$request_uri;
+  }
+  
+  server {
+    listen <%= ENV["PORT"] %>;
     server_name jack.chat;
     <% if ENV["ROOT"] %>
       root /app/www/<%= ENV["ROOT"] %>;
@@ -28,11 +34,5 @@ http {
     location @redirect {
       return 301 https://www.jack.chat$request_uri;
     }
-  }
-
-  server {
-    listen <%= ENV["PORT"] %>;
-    server_name _;
-    return 301 https://jack.chat$request_uri;
   }
 }

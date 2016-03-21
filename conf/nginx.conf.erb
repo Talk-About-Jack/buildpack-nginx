@@ -21,7 +21,11 @@ http {
 
     location / {
       default_type "text/html";
-      try_files /$uri /$uri.html /$uri/index.html /index.html;
+      try_files /$uri /$uri.html /$uri/index.html /index.html @redirect;
+    }
+
+    location @redirect {
+      return 301 https://www.jack.chat$request_uri;
     }
   }
 }

@@ -12,7 +12,7 @@ http {
   include mime.types;
   server {
     listen <%= ENV["PORT"] %>;
-    server_name  _;
+    server_name jack.chat;
     <% if ENV["ROOT"] %>
       root /app/www/<%= ENV["ROOT"] %>;
     <% else %>
@@ -27,5 +27,10 @@ http {
     location @redirect {
       return 301 https://www.jack.chat$request_uri;
     }
+  }
+
+  server {
+    server_name talk-about-jack.com www.talk-about-jack.com;
+    return 301 $scheme://jack.chat$request_uri;
   }
 }
